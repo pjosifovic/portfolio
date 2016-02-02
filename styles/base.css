@@ -2,8 +2,11 @@ body {
   padding: 1em;
 }
 
-
 main {
   margin: auto;
   width: 80%;
+}
+
+.template {
+  display: none;
 }
