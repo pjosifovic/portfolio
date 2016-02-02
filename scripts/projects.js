@@ -4,7 +4,7 @@ var projectData = [
   {
     title:        'Project Sample',
     url:          'http://www.google.com',
-    body:         'To be added',
+    body:         'Body text to be added. This is a sample, I guess I could have put some placeholder text.',
     publishedOn:  '2016-2-1'
   },
   {
