@@ -18,6 +18,7 @@ Project.prototype.toHtml = function() {
   $newProject.find('header h1').text(this.title);
   $newProject.find('address a').text(this.title);
   $newProject.attr('data-category', this.category);
+  $newProject.attr('data-title', this.title);
   $newProject.find('address span').text(' as ' + this.category);
   $newProject.find('address a').attr('href', this.url);
   $newProject.find('section.project-body').html(this.body);

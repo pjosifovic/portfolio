@@ -49,6 +49,10 @@ main {
   list-style: none;
 }
 
+#filters  {
+  list-style: none;
+}
+
 main section {
   padding: 1em;
 }
