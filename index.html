@@ -25,16 +25,30 @@
         </ul>
       </nav>
       <section id="articles" class="tab-content">
-          <article class="template">
-            <header>
-              <h1>Title</h1>
-              <div>
-                <address><a href="">Project Name </a></address>
-                 published <time pubdate datetime="2000-01-01">Publish Time</time>
-              </div>
-            </header>
-            <section class="project-body"></section>
-          </article>
+        <div>
+          <ul id="filters">
+            <li>
+              <select id="title-filter">
+                <option value="">-- Filter by Title --</option>
+              </select>
+            </li>
+            <li>
+              <select id="category-filter">
+                <option value="">-- Filter by Category --</option>
+              </select>
+            </li>
+          </ul>
+        </div>
+        <article class="template" data-category="personal">
+          <header>
+            <h1>Title</h1>
+            <div>
+              <address><a href="">Project Name </a><span>as personal</span></address>
+               published <time pubdate datetime="2000-01-01">Publish Time</time>
+            </div>
+          </header>
+          <section class="project-body"></section>
+        </article>
         </section>
         <section id="about" class="tab-content">
         <header>

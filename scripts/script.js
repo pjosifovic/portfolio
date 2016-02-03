@@ -8,6 +8,7 @@ function Project (opts) {
   this.url = opts.url;
   this.body = opts.body;
   this.publishedOn = opts.publishedOn;
+  this.category = opts.category;
 };
 
 Project.prototype.toHtml = function() {
@@ -16,6 +17,8 @@ Project.prototype.toHtml = function() {
 
   $newProject.find('header h1').text(this.title);
   $newProject.find('address a').text(this.title);
+  $newProject.attr('data-category', this.category);
+  $newProject.find('address span').text(' as ' + this.category);
   $newProject.find('address a').attr('href', this.url);
   $newProject.find('section.project-body').html(this.body);
   $newProject.find('time[pubdate]').text(this.publishedOn);
