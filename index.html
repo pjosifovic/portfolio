@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Predrag Josifovic portfolio</title>
     <link rel="stylesheet" href="vendor/styles/normalize.css">
+    <link rel="stylesheet" href="styles/icon.css">
     <link rel="stylesheet" href="styles/base.css">
   </head>
   <body>
@@ -12,12 +13,12 @@
         <h3>Hello World!</h3>
         <h1>My name is <span>Pedja Josifovic</span></h1>
         <h4>Web Developer focused on writing clean, elegant and efficient code. Code Fellows student in love with HTML5, CSS3, JS and jQuery</h3>
-        <nav class="main_nav">
+        <nav class="main-nav">
           <ul>
-            <li>Projects</li>
-            <li>About me</li>
-            <li><a href="https://github.com/pjosifovic" target="_blank">Github</a></li>
-            <li><a href="https://twitter.com/pedja_josifovic" target="_blank">Twitter</a></li>
+            <li class="tab" data-content="projects"><a href="#" class="icon-library"> Projects</a></li>
+            <li class="tab" data-content="about"><a href="#" class="icon-pen"> About me</a></li>
+            <li><a href="https://github.com/pjosifovic" target="_blank" class="icon-twitter"> Github</a></li>
+            <li><a href="https://twitter.com/pedja_josifovic" target="_blank" class="icon-github"> Twitter</a></li>
           </ul>
         </nav>
       </header>
@@ -40,5 +41,6 @@
     <script src="scripts/jquery-1.12.0.js"></script>
     <script src="scripts/projects.js"></script>
     <script src="scripts/script.js"></script>
+    <script src="scripts/projectView.js"></script>
   </body>
 </html>
