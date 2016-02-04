@@ -36,3 +36,6 @@
 .icon-github:before {
     content: "\e903";
 }
+.icon-menu:before {
+    content: "\e904";
+}
