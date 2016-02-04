@@ -9,48 +9,8 @@ main {
   font-family: 'Roboto', sans-serif;
 }
 
-.site-header {
-  padding: 1em;
-  background-color: #43a0ad;
-  text-align: center;
-}
-
-.site-header img {
-  border-radius: 100%;
-  max-width: 150px;
-  width: 100%;
-}
-
-.site-header span{
-  color: white;
-}
-
-.site-header h4 {
-  margin: 0;
-}
-
-.main-nav {
-  padding: 0;
-  clear: both;
-  margin-top: .4em;
-}
-
-.main-nav ul {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 0;
-  margin-bottom: 3em;
-}
-
-.main-nav li {
-  margin-right: .4em;
-  font-size: 1.5em;
-  padding: .5em .2em;
-  list-style: none;
-}
-
-#filters  {
-  list-style: none;
+img {
+  max-width: 100%;
 }
 
 main section {
@@ -95,12 +55,4 @@ a:focus {
   border-bottom: 1px solid #932a28;
   padding-bottom: 5px;
   color: #932a28;
-}
-
-
-/*Getting rid of template article
-===================================*/
-
-.template {
-  display: none;
 }
