@@ -13,39 +13,63 @@ projectView.handleMainNav = function(){
 
 projectView.populateFilters = function() {
   $('article').each(function() {
-    if (!$(this).hasClass('template')) {
-      var val = $(this).find('address a').text();
-      var optionTag = '<option value="' + val + '">' + val + '</option>';
+    
+    val = $(this).attr('data-title');
+    optionTag = '<option value="' + val + '">' + val + '</option>';
+    if ($('#title-filter option[value="' + val + '"]').length === 0) {
       $('#title-filter').append(optionTag);
-      val = $(this).attr('data-category');
-      optionTag = '<option value="' + val + '">' + val + '</option>';
-      if ($('#category-filter option[value="' + val + '"]').length === 0) {
-        $('#category-filter').append(optionTag);
-      }
     }
+
+    val = $(this).attr('data-category');
+    optionTag = '<option value="' + val + '">' + val + '</option>';
+    if ($('#category-filter option[value="' + val + '"]').length === 0) {
+      $('#category-filter').append(optionTag);
+    }
+    // }
   });
 };
 
 projectView.handleTitleFilter = function() {
-  $('#title-filter').on('change', function() {
-    if ($(this).val()) {
+  $('#title-filter').on('change', function () {
+    if($(this).val()) {
       var $articles = $('article');
       var $selectVal = $(this).val();
       $articles.hide();
-      $articles.each( function() {
+      $articles.each(function(){
         if($(this).attr('data-title') === $selectVal) {
+          console.log('hi');
           $(this).show();
         }
       });
-
     } else {
-      $('article').not('.template').each(function(){
+      $('article').not('.template').each(function() {
         $(this).show();
       });
-    }
+    };
     $('#category-filter').val('');
   });
 };
+//   $('#title-filter').on('change', function() {
+//     if ($(this).val()) {
+//       var $articles = $('article');
+//       var $selectVal = $(this).val();
+//       $articles.hide();
+//       $articles.each(function(){
+//         console.log('selected VAL ' + $selectVal);
+//         console.log('options ' + $(this).attr('data-title'));
+//         if($selectVal == 'Project Sample') {
+//           console.log('hi');
+//           $(this).show();
+//         }
+//       });
+//     } else {
+//       $('article').not('.template').each(function(){
+//         $(this).show();
+//       });
+//     }
+//     $('#category-filter').val('');
+//   });
+// };
 
 projectView.handleCategoryFilter = function() {
   $('#category-filter').on('change', function () {
@@ -55,6 +79,7 @@ projectView.handleCategoryFilter = function() {
       $articles.hide();
       $articles.each(function(){
         if($(this).attr('data-category') === $selectVal) {
+          console.log('hi');
           $(this).show();
         }
       });
