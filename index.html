@@ -10,6 +10,19 @@
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/layout.css">
     <link rel="stylesheet" href="styles/modules.css">
+
+    <script id="article-template" type="text/x-handlebars-template">
+      <article class="template" data-category="{{category}}" data-title="{{title}}">
+        <header>
+          <h1>{{title}}</h1>
+          <div>
+            <address><a href="{{url}}">{{title}} </a><span>{{category}}</span></address>
+             {{publishStatus}}
+          </div>
+        </header>
+        <section class="project-body">{{{body}}}</section>
+      </article>
+    </script>
   </head>
   <body>
     <main>
@@ -43,18 +56,8 @@
             </li>
           </ul>
         </div>
-        <article class="template" data-category="pers">
-          <header>
-            <h1>Title</h1>
-            <div>
-              <address><a href="">Project Name </a><span>as personal</span></address>
-               published <time pubdate datetime="2000-01-01">Publish Time</time>
-            </div>
-          </header>
-          <section class="project-body"></section>
-        </article>
-        </section>
-        <section id="about" class="tab-content">
+      </section>
+      <section id="about" class="tab-content">
         <header>
           Here are some information about me.
         </header>
@@ -67,6 +70,7 @@
       <p>&copy; 2016</p>
     </footer>
     <script src="vendor/scripts/jquery-1.12.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
     <script src="scripts/projects.js"></script>
     <script src="scripts/script.js"></script>
     <script src="scripts/projectView.js"></script>
