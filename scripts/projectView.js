@@ -5,7 +5,7 @@ projectView.handleMainNav = function(){
     var $tabContent = $('.tab-content');
     var $dataContent = $(this).attr('data-content');
     $tabContent.hide();
-    $tabContent.filter('#' + $dataContent).show();
+    $tabContent.filter('#' + $dataContent).fadeIn();
   });
 
   $('.main-nav .tab:first').click();
@@ -39,13 +39,13 @@ projectView.handleTitleFilter = function() {
       $articles.each(function(){
         if($(this).attr('data-title') === $selectVal) {
           // console.log('hi');
-          $(this).show();
+          $(this).fadeIn();
         }
       });
     } else {
       $('article').each(function() {
         console.log('in the else');
-        $(this).show();
+        $(this).fadeIn();
       });
     };
     $('#category-filter').val('');
@@ -61,13 +61,13 @@ projectView.handleCategoryFilter = function() {
       $articles.each(function(){
         if($(this).attr('data-category') === $selectVal) {
           console.log('hi');
-          $(this).show();
+          $(this).fadeIn();
         }
       });
     } else {
       $('article').each(function() {
         console.log('in the else');
-        $(this).show();
+        $(this).fadeIn();
       });
     };
     $('#title-filter').val('');
