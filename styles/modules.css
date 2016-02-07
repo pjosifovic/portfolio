@@ -49,6 +49,10 @@
   border-bottom: 1px solid #f64744;
 }
 
+#zipApi {
+  padding-left: 1em;
+}
+
 /*.template {
   display: none;
 }*/

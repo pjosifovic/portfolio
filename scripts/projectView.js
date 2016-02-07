@@ -74,15 +74,6 @@ projectView.handleCategoryFilter = function() {
   });
 };
 
-//     } else {
-//       $('article').not('.template').each(function() {
-//         $(this).show();
-//       });
-//     };
-//     $('#title-filter').val('');
-//   });
-// };
-
 
 // Calling functions when DOM is ready
 $(function(){
