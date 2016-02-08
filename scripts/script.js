@@ -47,3 +47,23 @@ projectData.forEach(function(opts) {
 allProjects.forEach(function(a) {
   $('#articles').append(a.toHtml());
 });
+
+//practicing Ziptastic API
+
+$(function() {
+  $('#zipCode').keyup(function(e){
+    e.preventDefault();
+    var $zipCode = $('#zipCode').val();
+    if($zipCode.length === 5 && $.isNumeric($zipCode)) {
+      var requestUrl = 'http://ZiptasticAPI.com/' + $zipCode + '?callback=?';
+      $.getJSON(requestUrl, null, function(data){
+        console.log(data);
+        if(data.city) $('#city').val(data.city);
+        if(data.state) $('#state').val(data.state);
+      });
+    } else {
+      $('#city').val('');
+      $('#state').val('');
+    }
+  });
+});

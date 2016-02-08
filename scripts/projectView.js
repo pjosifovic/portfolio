@@ -5,7 +5,7 @@ projectView.handleMainNav = function(){
     var $tabContent = $('.tab-content');
     var $dataContent = $(this).attr('data-content');
     $tabContent.hide();
-    $tabContent.filter('#' + $dataContent).show();
+    $tabContent.filter('#' + $dataContent).fadeIn();
   });
 
   $('.main-nav .tab:first').click();
@@ -13,7 +13,7 @@ projectView.handleMainNav = function(){
 
 projectView.populateFilters = function() {
   $('article').each(function() {
-    
+    // if(!$(this).hasClass('.template')){
     val = $(this).attr('data-title');
     optionTag = '<option value="' + val + '">' + val + '</option>';
     if ($('#title-filter option[value="' + val + '"]').length === 0) {
@@ -31,45 +31,26 @@ projectView.populateFilters = function() {
 
 projectView.handleTitleFilter = function() {
   $('#title-filter').on('change', function () {
+    console.log('selected Val ' + $(this).val());
     if($(this).val()) {
       var $articles = $('article');
       var $selectVal = $(this).val();
       $articles.hide();
       $articles.each(function(){
         if($(this).attr('data-title') === $selectVal) {
-          console.log('hi');
-          $(this).show();
+          // console.log('hi');
+          $(this).fadeIn();
         }
       });
     } else {
-      $('article').not('.template').each(function() {
-        $(this).show();
+      $('article').each(function() {
+        console.log('in the else');
+        $(this).fadeIn();
       });
     };
     $('#category-filter').val('');
   });
 };
-//   $('#title-filter').on('change', function() {
-//     if ($(this).val()) {
-//       var $articles = $('article');
-//       var $selectVal = $(this).val();
-//       $articles.hide();
-//       $articles.each(function(){
-//         console.log('selected VAL ' + $selectVal);
-//         console.log('options ' + $(this).attr('data-title'));
-//         if($selectVal == 'Project Sample') {
-//           console.log('hi');
-//           $(this).show();
-//         }
-//       });
-//     } else {
-//       $('article').not('.template').each(function(){
-//         $(this).show();
-//       });
-//     }
-//     $('#category-filter').val('');
-//   });
-// };
 
 projectView.handleCategoryFilter = function() {
   $('#category-filter').on('change', function () {
@@ -80,12 +61,13 @@ projectView.handleCategoryFilter = function() {
       $articles.each(function(){
         if($(this).attr('data-category') === $selectVal) {
           console.log('hi');
-          $(this).show();
+          $(this).fadeIn();
         }
       });
     } else {
-      $('article').not('.template').each(function() {
-        $(this).show();
+      $('article').each(function() {
+        console.log('in the else');
+        $(this).fadeIn();
       });
     };
     $('#title-filter').val('');
