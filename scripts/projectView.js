@@ -1,4 +1,4 @@
-var projectView = [];
+var projectView = {};
 
 projectView.handleMainNav = function(){
   $('.main-nav .tab').on('click', function(){
@@ -74,11 +74,12 @@ projectView.handleCategoryFilter = function() {
   });
 };
 
-
-// Calling functions when DOM is ready
-$(function(){
+projectView.initIndexPage = function() {
+  Project.all.forEach(function(a){
+    $('#articles').append(a.toHtml());
+  });
   projectView.handleMainNav();
   projectView.populateFilters();
   projectView.handleTitleFilter();
   projectView.handleCategoryFilter();
-});
+};
