@@ -34,9 +34,29 @@ Project.loadAll = function(data) {
 Project.fetchAll = function() {
   if(localStorage.articles) {
     //if localStorage has articles populated
+    $.ajax({
+      type: 'HEAD',
+      url: 'data/projects.json',
+      success: function(data, message, xhr) {
+        var eTag = xhr.getResponseHeader('eTag');
+        if (!localStorage.eTag || eTag !== localStorage.eTag) {
+          localStorage.eTag = eTag;
+        } else {
+          Project.loadAll(JSON.parse(localStorage.articles));
+        }
+      }
 
+    });
+    Project.loadAll(JSON.parse(localStorage.articles));
+    projectView.initIndexPage();
   } else {
-      //getJSON
+    $.getJSON('data/projects.json', function(data) {
+      console.log('in JSON');
+      var stringData = JSON.stringify(data);
+      localStorage.setItem('articles', stringData);
+      Project.loadAll(JSON.parse(localStorage.articles));
+      projectView.initIndexPage();
+    });
 
   }
 };
