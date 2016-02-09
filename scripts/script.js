@@ -38,9 +38,10 @@ Project.fetchAll = function() {
       type: 'HEAD',
       url: 'data/projects.json',
       success: function(data, message, xhr) {
-        var eTag = xhr.getResponseHeader('eTag');
+        var eTag = xhr.getResponseHeader('eTag'); //allows us to grab eTag from xhr object
         if (!localStorage.eTag || eTag !== localStorage.eTag) {
           localStorage.eTag = eTag;
+          // console.log('value of eTag is: ' + eTag);
         } else {
           Project.loadAll(JSON.parse(localStorage.articles));
         }
@@ -51,7 +52,7 @@ Project.fetchAll = function() {
     projectView.initIndexPage();
   } else {
     $.getJSON('data/projects.json', function(data) {
-      console.log('in JSON');
+      // console.log('in JSON');
       var stringData = JSON.stringify(data);
       localStorage.setItem('articles', stringData);
       Project.loadAll(JSON.parse(localStorage.articles));
@@ -70,7 +71,6 @@ $(function() {
     if($zipCode.length === 5 && $.isNumeric($zipCode)) {
       var requestUrl = 'http://ZiptasticAPI.com/' + $zipCode + '?callback=?';
       $.getJSON(requestUrl, null, function(data){
-        console.log();
         if(data.city) $('#city').val(data.city);
         if(data.state) $('#state').val(data.state);
       });
