@@ -1,9 +1,9 @@
-#filters  {
+.filters  {
   list-style: none;
   padding: 0;
 }
 
-#filters select {
+.filters select {
   width: 60%;
   margin: .2em 2%;
 }
@@ -14,12 +14,12 @@
     float: none;
   }
 
-  #filters select {
+  .filters select {
     width: 15em;
     margin: .2em .2em;
   }
 
-  #filters li {
+  .filters li {
     width: 20em;
     display: inline;
   }

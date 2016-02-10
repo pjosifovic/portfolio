@@ -24,7 +24,7 @@
       </article>
     </script>
     <script id="stats-template" type="text/x-handlebars-template">
-      <li><strong>{{authorName}}</strong>: {{totalWords}} words written</li>
+      <li><strong>{{titleName}}</strong>: {{totalWords}} words in the project</li>
     </script>
   </head>
   <body>
@@ -46,7 +46,7 @@
       </nav>
       <section id="articles" class="tab-content">
         <div>
-          <ul id="filters">
+          <ul class="filters">
             <li>
               <select id="title-filter">
                 <option value="">-- Filter by Title --</option>
@@ -70,31 +70,17 @@
       </section>
       <section id="blog-stats">
         <h2>Blog Stats</h2>
-        <dt>Total Projects</dt> <dd class="num-projects"></dd>
-        <dt>Total Words</dt> <dd class="num-words"></dd>
-        <p><em>Details on who is writing, and how much writing they are doing...</em></p>
-        <ul class="author-stats">
+        <dt>Total Projects:<dd class="num-projects"></dd></dt>
+        <dt>Total Words:<dd class="num-words"></dd></dt>
+        <ul class="project-stats">
           <!-- TODO: Use a handlebars template to fill in some stats for each author -->
         </ul>
       </section>
-      <form id="zipApi">
-        <h1>Practicing API</h1>
-        <p>Enter valid zip Code and city and state input will autopopulate</p>
-        <label>
-            <input type="text" id="zipCode" placeholder="Enter zip code" required>
-        </label>
-        <label>
-            <input type="text" id="city" placeholder="Your city">
-        </label>
-        <label>
-            <input type="text" id="state" placeholder="Your state">
-        </label>
-      </form>
-
     </main>
     <footer>
       <p>&copy; 2016</p>
     </footer>
+
     <script src="vendor/scripts/jquery-1.12.0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
     <!-- <script src="scripts/projects.js"></script> -->

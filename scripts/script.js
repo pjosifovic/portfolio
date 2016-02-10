@@ -1,4 +1,4 @@
-(function(module){
+
 
   function Project (opts) {
     this.title = opts.title;
@@ -8,7 +8,6 @@
     this.category = opts.category;
   };
 
-  //instead of allProjects array
   Project.all = [];
 
   Project.prototype.toHtml = function() {
@@ -61,34 +60,39 @@
 
   Project.numWordsAll = function(){
     return Project.all.map(function(article){
-      article.body.match(/\b\w+/g).length;
+      return article.body.match(/\b\w+/g).length;
       // .match() returns an array of all words. with .length we are getting rough number of words
+    })
+    .reduce(function(a, b){
+      return a + b;
     });
-    
-
   };
 
-
-
-
-  //practicing Ziptastic API
-
-  $(function() {
-    $('#zipCode').keyup(function(e){
-      e.preventDefault();
-      var $zipCode = $('#zipCode').val();
-      if($zipCode.length === 5 && $.isNumeric($zipCode)) {
-        var requestUrl = 'http://ZiptasticAPI.com/' + $zipCode + '?callback=?';
-        $.getJSON(requestUrl, null, function(data){
-          if(data.city) $('#city').val(data.city);
-          if(data.state) $('#state').val(data.state);
-        });
-      } else {
-        $('#city').val('');
-        $('#state').val('');
+  Project.allTitles = function() {
+    return Project.all.map(function(proj){
+      return proj.title;
+    })
+    .reduce(function(prev, cur){
+      if(prev.indexOf(cur) === -1){
+        prev.push(cur);
       }
-    });
-  });
+      return prev;
+    },[]);
+  };
 
-  module.Project = Project;
-});
+  Project.numWordsPerTitle = function() {
+    return Project.allTitles().map(function(title){
+      return {
+        titleName: title,
+        totalWords: Project.all.filter(function(proj){
+          return proj.title === title;
+        })
+        .map(function(article){
+          return article.body.match(/\b\w+/g).length;
+        })
+        .reduce(function(a, b){
+          return a + b;
+        })
+      };
+    });
+  };
