@@ -1,4 +1,4 @@
-var projectView = [];
+var projectView = {};
 
 projectView.handleMainNav = function(){
   $('.main-nav .tab').on('click', function(){
@@ -31,20 +31,18 @@ projectView.populateFilters = function() {
 
 projectView.handleTitleFilter = function() {
   $('#title-filter').on('change', function () {
-    console.log('selected Val ' + $(this).val());
+    // console.log('selected Val ' + $(this).val());
     if($(this).val()) {
       var $articles = $('article');
       var $selectVal = $(this).val();
       $articles.hide();
       $articles.each(function(){
         if($(this).attr('data-title') === $selectVal) {
-          // console.log('hi');
           $(this).fadeIn();
         }
       });
     } else {
       $('article').each(function() {
-        console.log('in the else');
         $(this).fadeIn();
       });
     };
@@ -60,13 +58,11 @@ projectView.handleCategoryFilter = function() {
       $articles.hide();
       $articles.each(function(){
         if($(this).attr('data-category') === $selectVal) {
-          console.log('hi');
           $(this).fadeIn();
         }
       });
     } else {
       $('article').each(function() {
-        console.log('in the else');
         $(this).fadeIn();
       });
     };
@@ -74,11 +70,12 @@ projectView.handleCategoryFilter = function() {
   });
 };
 
-
-// Calling functions when DOM is ready
-$(function(){
+projectView.initIndexPage = function() {
+  Project.all.forEach(function(a){
+    $('#articles').append(a.toHtml());
+  });
   projectView.handleMainNav();
   projectView.populateFilters();
   projectView.handleTitleFilter();
   projectView.handleCategoryFilter();
-});
+};
