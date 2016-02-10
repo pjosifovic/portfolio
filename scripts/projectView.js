@@ -1,81 +1,85 @@
-var projectView = {};
+(function(module){
 
-projectView.handleMainNav = function(){
-  $('.main-nav .tab').on('click', function(){
-    var $tabContent = $('.tab-content');
-    var $dataContent = $(this).attr('data-content');
-    $tabContent.hide();
-    $tabContent.filter('#' + $dataContent).fadeIn();
-  });
+  var projectView = {};
 
-  $('.main-nav .tab:first').click();
-};
+  projectView.handleMainNav = function(){
+    $('.main-nav .tab').on('click', function(){
+      var $tabContent = $('.tab-content');
+      var $dataContent = $(this).attr('data-content');
+      $tabContent.hide();
+      $tabContent.filter('#' + $dataContent).fadeIn();
+    });
 
-projectView.populateFilters = function() {
-  $('article').each(function() {
-    // if(!$(this).hasClass('.template')){
-    val = $(this).attr('data-title');
-    optionTag = '<option value="' + val + '">' + val + '</option>';
-    if ($('#title-filter option[value="' + val + '"]').length === 0) {
-      $('#title-filter').append(optionTag);
-    }
+    $('.main-nav .tab:first').click();
+  };
 
-    val = $(this).attr('data-category');
-    optionTag = '<option value="' + val + '">' + val + '</option>';
-    if ($('#category-filter option[value="' + val + '"]').length === 0) {
-      $('#category-filter').append(optionTag);
-    }
-    // }
-  });
-};
+  projectView.populateFilters = function() {
+    $('article').each(function() {
+      // if(!$(this).hasClass('.template')){
+      val = $(this).attr('data-title');
+      optionTag = '<option value="' + val + '">' + val + '</option>';
+      if ($('#title-filter option[value="' + val + '"]').length === 0) {
+        $('#title-filter').append(optionTag);
+      }
 
-projectView.handleTitleFilter = function() {
-  $('#title-filter').on('change', function () {
-    // console.log('selected Val ' + $(this).val());
-    if($(this).val()) {
-      var $articles = $('article');
-      var $selectVal = $(this).val();
-      $articles.hide();
-      $articles.each(function(){
-        if($(this).attr('data-title') === $selectVal) {
+      val = $(this).attr('data-category');
+      optionTag = '<option value="' + val + '">' + val + '</option>';
+      if ($('#category-filter option[value="' + val + '"]').length === 0) {
+        $('#category-filter').append(optionTag);
+      }
+      // }
+    });
+  };
+
+  projectView.handleTitleFilter = function() {
+    $('#title-filter').on('change', function () {
+      // console.log('selected Val ' + $(this).val());
+      if($(this).val()) {
+        var $articles = $('article');
+        var $selectVal = $(this).val();
+        $articles.hide();
+        $articles.each(function(){
+          if($(this).attr('data-title') === $selectVal) {
+            $(this).fadeIn();
+          }
+        });
+      } else {
+        $('article').each(function() {
           $(this).fadeIn();
-        }
-      });
-    } else {
-      $('article').each(function() {
-        $(this).fadeIn();
-      });
-    };
-    $('#category-filter').val('');
-  });
-};
+        });
+      };
+      $('#category-filter').val('');
+    });
+  };
 
-projectView.handleCategoryFilter = function() {
-  $('#category-filter').on('change', function () {
-    if($(this).val()) {
-      var $articles = $('article');
-      var $selectVal = $(this).val();
-      $articles.hide();
-      $articles.each(function(){
-        if($(this).attr('data-category') === $selectVal) {
+  projectView.handleCategoryFilter = function() {
+    $('#category-filter').on('change', function () {
+      if($(this).val()) {
+        var $articles = $('article');
+        var $selectVal = $(this).val();
+        $articles.hide();
+        $articles.each(function(){
+          if($(this).attr('data-category') === $selectVal) {
+            $(this).fadeIn();
+          }
+        });
+      } else {
+        $('article').each(function() {
           $(this).fadeIn();
-        }
-      });
-    } else {
-      $('article').each(function() {
-        $(this).fadeIn();
-      });
-    };
-    $('#title-filter').val('');
-  });
-};
+        });
+      };
+      $('#title-filter').val('');
+    });
+  };
 
-projectView.initIndexPage = function() {
-  Project.all.forEach(function(a){
-    $('#articles').append(a.toHtml());
-  });
-  projectView.handleMainNav();
-  projectView.populateFilters();
-  projectView.handleTitleFilter();
-  projectView.handleCategoryFilter();
-};
+  projectView.initIndexPage = function() {
+    Project.all.forEach(function(a){
+      $('#articles').append(a.toHtml());
+    });
+    projectView.handleMainNav();
+    projectView.populateFilters();
+    projectView.handleTitleFilter();
+    projectView.handleCategoryFilter();
+  };
+  module.projectView = projectView;
+});
