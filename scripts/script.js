@@ -33,7 +33,6 @@ Project.loadAll = function(data) {
 
 Project.fetchAll = function() {
   if(localStorage.articles) {
-    //if localStorage has articles populated
     $.ajax({
       type: 'HEAD',
       url: 'data/projects.json',
@@ -41,25 +40,26 @@ Project.fetchAll = function() {
         var eTag = xhr.getResponseHeader('eTag'); //allows us to grab eTag from xhr object
         if (!localStorage.eTag || eTag !== localStorage.eTag) {
           localStorage.eTag = eTag;
-          // console.log('value of eTag is: ' + eTag);
+          Project.getAll();
         } else {
           Project.loadAll(JSON.parse(localStorage.articles));
+          projectView.initIndexPage();
         }
       }
 
     });
+  } else {
+    Project.getAll();
+  }
+};
+
+Project.getAll = function() {
+  $.getJSON('data/projects.json', function(data) {
+    var stringData = JSON.stringify(data);
+    localStorage.setItem('articles', stringData);
     Project.loadAll(JSON.parse(localStorage.articles));
     projectView.initIndexPage();
-  } else {
-    $.getJSON('data/projects.json', function(data) {
-      // console.log('in JSON');
-      var stringData = JSON.stringify(data);
-      localStorage.setItem('articles', stringData);
-      Project.loadAll(JSON.parse(localStorage.articles));
-      projectView.initIndexPage();
-    });
-
-  }
+  });
 };
 
 //practicing Ziptastic API
