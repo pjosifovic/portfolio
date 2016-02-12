@@ -83,8 +83,8 @@
     Project.numWordsPerTitle().forEach(function(s){
       $('.project-stats').append(template(s));
     });
-    $('#blog-stats .num-projects').text(Project.all.length);
-    $('#blog-stats .num-words').text(Project.numWordsAll());
+    $('.blog-stats .num-projects').text(Project.all.length);
+    $('.blog-stats .num-words').text(Project.numWordsAll());
   };
   module.projectView = projectView;
 })(window);
