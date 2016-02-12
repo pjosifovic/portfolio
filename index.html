@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/layout.css">
     <link rel="stylesheet" href="styles/modules.css">
-
+    <!-- articles handlebars script -->
     <script id="article-template" type="text/x-handlebars-template">
       <article class="template" data-category="{{category}}" data-title="{{title}}">
         <header>
@@ -23,10 +23,12 @@
         <section class="project-body">{{{body}}}</section>
       </article>
     </script>
+    <!-- blog stats handlebars script -->
     <script id="stats-template" type="text/x-handlebars-template">
       <li><strong>{{titleName}}</strong>: {{totalWords}} words in the project</li>
     </script>
   </head>
+
   <body>
     <main>
       <header class="site-header">
@@ -73,7 +75,7 @@
         <dt>Total Projects:<dd class="num-projects"></dd></dt>
         <dt>Total Words:<dd class="num-words"></dd></dt>
         <ul class="project-stats">
-          <!-- TODO: Use a handlebars template to fill in some stats for each author -->
+          <!-- blog state handlebars template goes here -->
         </ul>
       </section>
     </main>
@@ -83,7 +85,6 @@
 
     <script src="vendor/scripts/jquery-1.12.0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
-    <!-- <script src="scripts/projects.js"></script> -->
     <script src="scripts/script.js"></script>
     <script src="scripts/projectView.js"></script>
     <script>
