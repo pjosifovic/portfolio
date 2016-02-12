@@ -78,4 +78,10 @@ projectView.initIndexPage = function() {
   projectView.populateFilters();
   projectView.handleTitleFilter();
   projectView.handleCategoryFilter();
+  var template = Handlebars.compile($('#stats-template').text());
+  Project.numWordsPerTitle().forEach(function(s){
+    $('.project-stats').append(template(s));
+  });
+  $('#blog-stats .num-projects').text(Project.all.length);
+  $('#blog-stats .num-words').text(Project.numWordsAll());
 };

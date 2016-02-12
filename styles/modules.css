@@ -49,6 +49,17 @@
   border-bottom: 1px solid #f64744;
 }
 
+#blog-stats dt, dd {
+  display: inline-block;
+  margin-left: .2em;
+}
+
+.num-projects {
+  padding-right: 3em;
+}
+
+
+
 #zipApi {
   padding-left: 1em;
 }
