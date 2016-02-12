@@ -1,4 +1,4 @@
-
+(function(module) {
 
   function Project (opts) {
     this.title = opts.title;
@@ -27,43 +27,13 @@
     });
   };
 
-  Project.fetchAll = function() {
-    if(localStorage.articles) {
-      $.ajax({
-        type: 'HEAD',
-        url: 'data/projects.json',
-        success: function(data, message, xhr) {
-          var eTag = xhr.getResponseHeader('eTag'); //allows us to grab eTag from xhr object
-          if (!localStorage.eTag || eTag !== localStorage.eTag) {
-            localStorage.eTag = eTag;
-            Project.getAll();
-          } else {
-            Project.loadAll(JSON.parse(localStorage.articles));
-            projectView.initIndexPage();
-          }
-        }
-
-      });
-    } else {
-      Project.getAll();
-    }
-  };
-
-  Project.getAll = function() {
-    $.getJSON('data/projects.json', function(data) {
-      var stringData = JSON.stringify(data);
-      localStorage.setItem('articles', stringData);
-      Project.loadAll(JSON.parse(localStorage.articles));
-      projectView.initIndexPage();
-    });
-  };
-
   Project.numWordsAll = function(){
-    return Project.all.map(function(article){
-      return article.body.match(/\b\w+/g).length;
+    return Project.all.map(function(project){
+      return project.body.match(/\b\w+/g).length;
       // .match() returns an array of all words. with .length we are getting rough number of words
     })
-    .reduce(function(a, b){
+    .reduce(function(a, b) {
+      console.log('in the reduce numWordsAll');
       return a + b;
     });
   };
@@ -96,3 +66,21 @@
       };
     });
   };
+
+  Project.fetchAll = function(next) {
+    if(localStorage.articles) {
+      Project.loadAll(JSON.parse(localStorage.articles));
+      console.log('if lS exist, after parsing it!');
+      next();
+    } else {
+      $.getJSON('data/projects.json', function(data) {
+        Project.loadAll(data);
+        localStorage.articles = JSON.stringify(data);
+        next();
+      });
+    };
+  };
+
+
+  module.Project = Project;
+})(window);
