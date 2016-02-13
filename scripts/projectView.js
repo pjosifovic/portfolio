@@ -4,9 +4,8 @@
   projectView.handleMainNav = function(){
     $('.main-nav .tab').on('click', function(){
       var $tabContent = $('.tab-content');
-      var $dataContent = $(this).attr('data-content');
       $tabContent.hide();
-      $tabContent.filter('#' + $dataContent).fadeIn();
+      $tabContent.filter('#' + $(this).attr('data-content')).fadeIn();
     });
 
     $('.main-nav .tab:first').click();
@@ -32,7 +31,6 @@
 
   projectView.handleTitleFilter = function() {
     $('#title-filter').on('change', function () {
-      // console.log('selected Val ' + $(this).val());
       if($(this).val()) {
         var $articles = $('article');
         var $selectVal = $(this).val();
