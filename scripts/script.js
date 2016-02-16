@@ -16,23 +16,19 @@
   };
 
   Project.loadAll = function(data) {
-    data.sort(function(a,b) {
-      return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
-    });
-    data.forEach(function(opts) {
-      Project.all.push(new Project(opts));
+    Project.all = data.map(function(ele) {
+      return new Project(ele);
     });
   };
 
   Project.fetchAll = function(next) {
     if(localStorage.articles) {
-      console.log('if theres a local');
-      // Project.loadAll(JSON.parse(localStorage.rawData));
-      // next();
+      Project.loadAll(JSON.parse(localStorage.articles));
+      next();
     } else {
       $.getJSON('data/projects.json', function(data) {
-        Project.loadAll(data);
         localStorage.articles = JSON.stringify(data);
+        Project.loadAll(data);
         next();
       });
     };

@@ -3,7 +3,6 @@
 
   projectView.populateFilters = function() {
     $('article').each(function() {
-      // if(!$(this).hasClass('.template')){
       val = $(this).attr('data-title');
       optionTag = '<option value="' + val + '">' + val + '</option>';
       if ($('#title-filter option[value="' + val + '"]').length === 0) {
@@ -15,7 +14,6 @@
       if ($('#category-filter option[value="' + val + '"]').length === 0) {
         $('#category-filter').append(optionTag);
       }
-      // }
     });
   };
 
@@ -60,6 +58,8 @@
   };
 
   projectView.initIndexPage = function() {
+    var $articles = $('#articles');
+    $articles.empty();
     Project.all.forEach(function(a){
       $('#articles').append(a.toHtml());
     });

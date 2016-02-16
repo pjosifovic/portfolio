@@ -2,8 +2,8 @@
   var articlesController = {};
 
   articlesController.index = function() {
-    $('main > section').hide();
     Project.fetchAll(projectView.initIndexPage);
+    $('main > section').hide();
     $('#articles').show();
   };
 
