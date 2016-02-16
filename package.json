@@ -1,0 +1,28 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "Refactoring portfolio page to use good MVC separation of concerns",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pjosifovic/portfolio.git"
+  },
+  "keywords": [
+    "portfolio",
+    "web",
+    "development"
+  ],
+  "author": "Pedja Josifovic",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pjosifovic/portfolio/issues"
+  },
+  "homepage": "https://github.com/pjosifovic/portfolio#readme",
+  "dependencies": {
+    "express": "^4.13.4",
+    "express-request-proxy": "^1.1.0"
+  }
+}

@@ -3,6 +3,7 @@ styles/**
 vendor/**
 img/*
 assets/**
+node_modules/**
 .DS_Store
 .eslintignore
 .eslintrc
