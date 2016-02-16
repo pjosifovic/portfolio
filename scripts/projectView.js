@@ -1,15 +1,15 @@
 (function(module){
   var projectView = {};
 
-  projectView.handleMainNav = function(){
-    $('.main-nav .tab').on('click', function(){
-      var $tabContent = $('.tab-content');
-      $tabContent.hide();
-      $tabContent.filter('#' + $(this).attr('data-content')).fadeIn();
-    });
-
-    $('.main-nav .tab:first').click();
-  };
+  // projectView.handleMainNav = function(){
+  //   $('.main-nav .tab').on('click', function(){
+  //     var $tabContent = $('.tab-content');
+  //     $tabContent.hide();
+  //     $tabContent.filter('#' + $(this).attr('data-content')).fadeIn();
+  //   });
+  //
+  //   $('.main-nav .tab:first').click();
+  // };
 
   projectView.populateFilters = function() {
     $('article').each(function() {
@@ -73,7 +73,7 @@
     Project.all.forEach(function(a){
       $('#articles').append(a.toHtml());
     });
-    projectView.handleMainNav();
+    // projectView.handleMainNav();
     projectView.populateFilters();
     projectView.handleTitleFilter();
     projectView.handleCategoryFilter();
