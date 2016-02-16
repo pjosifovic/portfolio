@@ -24,49 +24,11 @@
     });
   };
 
-  Project.numWordsAll = function(){
-    return Project.all.map(function(project){
-      return project.body.match(/\b\w+/g).length;
-    })
-    .reduce(function(a, b) {
-      console.log('in the reduce numWordsAll');
-      return a + b;
-    });
-  };
-
-  Project.allTitles = function() {
-    return Project.all.map(function(proj){
-      return proj.title;
-    })
-    .reduce(function(prev, cur){
-      if(prev.indexOf(cur) === -1){
-        prev.push(cur);
-      }
-      return prev;
-    },[]);
-  };
-
-  Project.numWordsPerTitle = function() {
-    return Project.allTitles().map(function(title){
-      return {
-        titleName: title,
-        totalWords: Project.all.filter(function(proj){
-          return proj.title === title;
-        })
-        .map(function(article){
-          return article.body.match(/\b\w+/g).length;
-        })
-        .reduce(function(a, b){
-          return a + b;
-        })
-      };
-    });
-  };
-
   Project.fetchAll = function(next) {
     if(localStorage.articles) {
-      Project.loadAll(JSON.parse(localStorage.articles));
-      next();
+      console.log('if theres a local');
+      // Project.loadAll(JSON.parse(localStorage.rawData));
+      // next();
     } else {
       $.getJSON('data/projects.json', function(data) {
         Project.loadAll(data);
