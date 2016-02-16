@@ -1,0 +1,11 @@
+.git/**
+styles/**
+vendor/**
+img/*
+assets/**
+.DS_Store
+.eslintignore
+.eslintrc
+.gitignore
+index.html
+README.md

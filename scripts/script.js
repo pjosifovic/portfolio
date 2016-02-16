@@ -1,11 +1,9 @@
 (function(module) {
 
   function Project (opts) {
-    this.title = opts.title;
-    this.url = opts.url;
-    this.body = opts.body;
-    this.publishedOn = opts.publishedOn;
-    this.category = opts.category;
+    Object.keys(opts).forEach(function(e, idx, keys) {
+      this[e] = opts[e];
+    }, this);
   };
 
   Project.all = [];
@@ -17,7 +15,6 @@
     return template(this);
   };
 
-  // loadAll function
   Project.loadAll = function(data) {
     data.sort(function(a,b) {
       return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
@@ -30,7 +27,6 @@
   Project.numWordsAll = function(){
     return Project.all.map(function(project){
       return project.body.match(/\b\w+/g).length;
-      // .match() returns an array of all words. with .length we are getting rough number of words
     })
     .reduce(function(a, b) {
       console.log('in the reduce numWordsAll');
@@ -70,7 +66,6 @@
   Project.fetchAll = function(next) {
     if(localStorage.articles) {
       Project.loadAll(JSON.parse(localStorage.articles));
-      console.log('if lS exist, after parsing it!');
       next();
     } else {
       $.getJSON('data/projects.json', function(data) {
