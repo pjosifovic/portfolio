@@ -4,14 +4,10 @@
   repos.all = [];
 
   repos.requestRepos = function(cb) {
-    $.ajax({
-      url: 'https://api.github.com/users/pjosifovic/repos' + '?per_page=4&sort=updated',
-      type: 'GET',
-      headers: { 'Authorization': 'token ' + githubToken},
-      success: function(data, message, xhr) {
+    $.ajax('/github/users/pjosifovic/repos' + '?per_page=4&sort=updated',
+      function(data, message, xhr) {
         repos.all = data;
-      }
-    }).done(cb);
+      }).done(cb);
   };
 
   repos.with = function(attr) {
