@@ -1,6 +1,13 @@
 (function(module){
   var projectView = {};
 
+  var render = function(article) {
+    var template = Handlebars.compile($('#article-template').text());
+    this.daysAgo = parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000);
+    this.publishStatus = this.publishedOn ? 'published ' + this.daysAgo + ' days ago' : '(draft)';
+    return template(article);
+  };
+
   projectView.populateFilters = function() {
     $('article').each(function() {
       val = $(this).attr('data-title');
@@ -61,7 +68,7 @@
     var $articles = $('#articles');
     $articles.empty();
     Project.all.forEach(function(a){
-      $('#articles').append(a.toHtml());
+      $('#articles').append(render(a));
     });
     projectView.populateFilters();
     projectView.handleTitleFilter();
