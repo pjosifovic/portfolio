@@ -8,13 +8,6 @@
 
   Project.all = [];
 
-  Project.prototype.toHtml = function() {
-    var template = Handlebars.compile($('#article-template').text());
-    this.daysAgo = parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000);
-    this.publishStatus = this.publishedOn ? 'published ' + this.daysAgo + ' days ago' : '(draft)';
-    return template(this);
-  };
-
   Project.loadAll = function(data) {
     Project.all = data.map(function(ele) {
       return new Project(ele);
@@ -33,7 +26,6 @@
       });
     };
   };
-
 
   module.Project = Project;
 })(window);
