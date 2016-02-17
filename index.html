@@ -40,8 +40,8 @@
       <nav class="main-nav">
         <img class="icon-menu" src="assets/img/hamburger-list.png"/>
         <ul>
-          <li class="tab" data-content="articles"><a href="#" class="icon-library"> Projects</a></li>
-          <li class="tab" data-content="about"><a href="#" class="icon-pen"> About me</a></li>
+          <li class="tab" data-content="articles"><a href="/" class="icon-library"> Projects</a></li>
+          <li class="tab" data-content="about"><a href="/about" class="icon-pen"> About me</a></li>
           <li><a href="https://github.com/pjosifovic" target="_blank" class="icon-github"> Github</a></li>
           <li><a href="https://twitter.com/pedja_josifovic" target="_blank" class="icon-twitter"> Twitter</a></li>
         </ul>
@@ -83,12 +83,20 @@
       <p>&copy; 2016</p>
     </footer>
 
+    <!-- pulling in vendor scripts -->
     <script src="vendor/scripts/jquery-1.12.0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+    <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
+
     <script src="scripts/script.js"></script>
     <script src="scripts/projectView.js"></script>
-    <script>
-      Project.fetchAll(projectView.initIndexPage);
-    </script>
+
+    <!-- DONE:puling in controllers -->
+    <<script src="scripts/articlesController.js"></script>
+    <<script src="scripts/aboutController.js"></script>
+
+    <!-- pulling in routes -->
+    <<script src="scripts/routes.js"></script>
+
   </body>
 </html>

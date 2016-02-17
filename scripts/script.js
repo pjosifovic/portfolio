@@ -16,50 +16,8 @@
   };
 
   Project.loadAll = function(data) {
-    data.sort(function(a,b) {
-      return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
-    });
-    data.forEach(function(opts) {
-      Project.all.push(new Project(opts));
-    });
-  };
-
-  Project.numWordsAll = function(){
-    return Project.all.map(function(project){
-      return project.body.match(/\b\w+/g).length;
-    })
-    .reduce(function(a, b) {
-      console.log('in the reduce numWordsAll');
-      return a + b;
-    });
-  };
-
-  Project.allTitles = function() {
-    return Project.all.map(function(proj){
-      return proj.title;
-    })
-    .reduce(function(prev, cur){
-      if(prev.indexOf(cur) === -1){
-        prev.push(cur);
-      }
-      return prev;
-    },[]);
-  };
-
-  Project.numWordsPerTitle = function() {
-    return Project.allTitles().map(function(title){
-      return {
-        titleName: title,
-        totalWords: Project.all.filter(function(proj){
-          return proj.title === title;
-        })
-        .map(function(article){
-          return article.body.match(/\b\w+/g).length;
-        })
-        .reduce(function(a, b){
-          return a + b;
-        })
-      };
+    Project.all = data.map(function(ele) {
+      return new Project(ele);
     });
   };
 
@@ -69,8 +27,8 @@
       next();
     } else {
       $.getJSON('data/projects.json', function(data) {
-        Project.loadAll(data);
         localStorage.articles = JSON.stringify(data);
+        Project.loadAll(data);
         next();
       });
     };
