@@ -3,8 +3,6 @@
 
   var render = function(article) {
     var template = Handlebars.compile($('#article-template').text());
-    this.daysAgo = parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000);
-    this.publishStatus = this.publishedOn ? 'published ' + this.daysAgo + ' days ago' : '(draft)';
     return template(article);
   };
 
@@ -65,7 +63,7 @@
   };
 
   projectView.initIndexPage = function() {
-    var $articles = $('#articles');
+    var $articles = $('#articles article');
     $articles.empty();
     Project.all.forEach(function(a){
       $('#articles').append(render(a));
