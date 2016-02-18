@@ -5,7 +5,6 @@
 
   repos.requestRepos = function(callback) {
     $.get('/github/users/pjosifovic/repos', function(data, message, xhr) {
-      console.log('in the repo');
       repos.all = data;
     }).done(callback);
   };
